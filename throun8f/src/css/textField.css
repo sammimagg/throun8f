@@ -1,0 +1,11 @@
+.textfield_transparent{
+	-fx-background-color: none !important;
+	-fx-border-color: transparent !important;
+	-fx-color: transparent !important;
+	-fx-font-color: transparent;
+	-fx-text-inner-color: white;
+	-fx-font-size: 20px;	
+}
+.comboBox_transparent{
+	-fx-background-color: none !important;
+}

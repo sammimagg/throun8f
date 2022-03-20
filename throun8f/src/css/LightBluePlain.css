@@ -1,0 +1,6 @@
+ .background_img_lightblue_plain{
+ -fx-background-image: url('LightBluePlain.png');
+ -fx-background-size: 4em ;
+ -fx-background-position: center;
+  -fx-background-repeat: stretch
+}
