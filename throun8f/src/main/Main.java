@@ -6,6 +6,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Main extends Application {
 
     @Override
@@ -16,11 +21,32 @@ public class Main extends Application {
         scene.getStylesheets().add(getClass().getResource("/css/application.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.show();
+        System.out.println("HI");
 
     }
 
 
     public static void main(String[] args) {
+
         launch(args);
+        search();
+
     }
+    public static void search() {
+        Connection con = FlightUtility.connect();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try {
+            String sql = "Select * from FlightDB";
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            String res = rs.getString(1);
+            System.out.println(res);
+
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+    }
+
 }
