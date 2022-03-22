@@ -1,0 +1,73 @@
+
+.background_img_airicelandconnect{
+	-fx-background-image: url('/img/airIcelandConnect.png');
+	-fx-background-size: 10em ;
+	-fx-background-position: center;
+	-fx-background-repeat: stretch
+}
+ .image_map_rvk_egi{
+     -fx-background-image: url('/img/reykjarvik-egilsstadir.png');
+     -fx-background-size: 100%;
+     -fx-background-position: center;
+      -fx-background-repeat: stretch
+}
+.image_map_rvk_aku{
+    -fx-background-image: url('/img/reykjarvik-akureyri.png');
+    -fx-background-size: 100%;
+    -fx-background-position: center;
+    -fx-background-repeat: stretch
+}
+.image_map_rvk_isa{
+    -fx-background-image: url('/img/reykjarvik-isafjordur.png');
+    -fx-background-size: 100%;
+    -fx-background-position: center;
+    -fx-background-repeat: stretch
+}
+ .background_img_lightblue_plain_arrival{
+     -fx-background-image: url('/img/lightBluePlainArrival.png');
+     -fx-background-size: 4em ;
+     -fx-background-position: center;
+      -fx-background-repeat: stretch
+}
+.background_img_lightblue_plain_departure{
+    -fx-background-image: url('/img/lightBluePlainDeparture.png');
+    -fx-background-size: 4em ;
+    -fx-background-position: center;
+    -fx-background-repeat: stretch
+}
+.icon_time{
+    -fx-background-image: url('/img/Time.png');
+    -fx-background-size: 1.5em ;
+    -fx-background-position: center;
+    -fx-background-repeat: stretch
+}
+.icon_round_trip{
+    -fx-background-image: url('/img/RoundTrip.png');
+    -fx-background-size: 1.5em ;
+    -fx-background-position: center;
+    -fx-background-repeat: stretch
+}
+.icon_one_way{
+     -fx-background-image: url('/img/OneWay.png');
+     -fx-background-size: 1.5em ;
+     -fx-background-position: center;
+     -fx-background-repeat: stretch
+ }
+.icon_right_arrow{
+    -fx-background-image: url('/img/rightArrow.png');
+    -fx-background-size: 1.5em ;
+    -fx-background-position: center;
+    -fx-background-repeat: stretch
+}
+.icon_result{
+    -fx-background-image: url('/img/result.png');
+    -fx-background-size: 0.5em ;
+    -fx-background-position: center;
+    -fx-background-repeat: stretch
+}
+.icon_plain{
+    -fx-background-image: url('/img/bluePlain.png');
+    -fx-background-size: 0.5em ;
+    -fx-background-position: center;
+    -fx-background-repeat: stretch
+}

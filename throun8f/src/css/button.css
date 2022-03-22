@@ -1,8 +1,8 @@
-.combobox_transperant
-{
-
+.plus_minus{
+    -fx-background-color: transparent;
 }
-.datapicker_transperant
-{
-
+.search{
+    -fx-background-color: whitet;
+    -fx-border-color: white;
+    -fx-border-radius: 15px;
 }

@@ -18,24 +18,34 @@ public class Controller implements Initializable {
     @FXML
     private ComboBox<String> comboBoxTo;
     @FXML
-    private ListView<String> fxListViewFlightResault;
-
+    private ListView<FlightDetails> flightDetailsListView;
+    ObservableList<FlightDetails> flightDetailsItems;
 
     ObservableList<String> oneWayOrRoundtrip = FXCollections.observableArrayList("One Way","Round trip");
     ObservableList<String> destinations = FXCollections.observableArrayList("Akureyri","Reykjarvík","Ísafjörður","Egilsstaðir");
-    ObservableList<String> listItems = FXCollections.observableArrayList("Add Items here","Add Items here","Add Items here","Add Items here","Add Items here","Add Items here","Add Items here","Add Items here","Add Items here",
-            "Add Items here","Add Items here","Add Items here","Add Items here","Add Items here","Add Items here",
-            "Add Items here","Add Items here","Add Items here","Add Items here","Add Items here","Add Items here","Add Items here","Add Items here","Add Items here");
+    public Controller() {
+        flightDetailsItems = FXCollections.observableArrayList();
+        flightDetailsItems.addAll(
+                new FlightDetails("12.12.22","11:00","12.12.22","11:30"),
+                new FlightDetails("12.12.22","11:00","12.12.22","11:30")
+        );
+
+    }
+
+
+
+
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-            comboBoxOneOrTwo.setItems(oneWayOrRoundtrip);
+
+           // comboBoxOneOrTwo.setItems(oneWayOrRoundtrip);
             comboBoxFrom.setItems(destinations);
             comboBoxTo.setItems(destinations);
-            //fxListViewFlightResault.setItems(listItems);
-
-
+            flightDetailsListView.setItems(flightDetailsItems);
+            flightDetailsListView.setCellFactory(FlightDetailsListView -> new FlightDetailsListViewCell());
+            System.out.println(flightDetailsItems.get(1).getDepartureTime());
 
     }
 

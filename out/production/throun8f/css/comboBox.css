@@ -1,0 +1,18 @@
+.comboBox_transparent{
+	-fx-background-color: none !important;
+
+}
+.combo-box > .list-cell {
+	-fx-text-fill: white;
+
+}
+.combo-box-regular > .list-cell {
+	-fx-font-size: 20px;
+}
+.combo-box-bolt > .list-cell {
+	-fx-font-size: 16px;
+	-fx-font-weight: bold;
+}
+.combo-box .arrow, .combo-box .arrow-button{
+    -fx-background-color: transparent;
+}

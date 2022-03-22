@@ -1,0 +1,8 @@
+.plus_minus{
+    -fx-background-color: transparent;
+}
+.search{
+    -fx-background-color: whitet;
+    -fx-border-color: white;
+    -fx-border-radius: 15px;
+}

@@ -1,0 +1,6 @@
+ .background_image_map_rvk_egi{
+ -fx-background-image: url('mapRvkEgi.png');
+ -fx-background-size: 100%;
+ -fx-background-position: center;
+  -fx-background-repeat: stretch
+}

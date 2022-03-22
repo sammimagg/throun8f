@@ -1,0 +1,29 @@
+.root{
+
+    -fx-font-family: "Calibri";
+
+}
+.fontLightGrey
+{
+	-fx-text-fill: #8e8e8e !important;
+	-fx-text-inner-color:  #8e8e8e !important;
+
+}
+.fontWhite
+{
+	-fx-text-fill: green;
+
+}
+.fontWeightThin
+{
+
+}
+
+.fontGrey
+{
+	-fx-text-fill: #707070;
+}
+.backgroundColorBlue
+{
+	-fx-background-color: linear-gradient(#253586, #253586);
+}
