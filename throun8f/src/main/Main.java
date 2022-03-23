@@ -21,7 +21,6 @@ public class Main extends Application {
         scene.getStylesheets().add(getClass().getResource("/css/application.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.show();
-        System.out.println("HI");
 
     }
 
@@ -29,13 +28,16 @@ public class Main extends Application {
     public static void main(String[] args) {
 
         launch(args);
-        search();
+
 
     }
-    public static void search() {
-        Connection con = FlightUtility.connect();
+    public static void search() throws ClassNotFoundException {
+       // Class.forName("org.sqlite.JDBC");
+        String url = "jdbc:sqlite:Flights.db";
+        Connection con = FlightUtility.connect(url);
         PreparedStatement ps = null;
         ResultSet rs = null;
+
 
         try {
             String sql = "Select * from FlightDB";

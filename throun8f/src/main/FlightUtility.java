@@ -4,7 +4,7 @@ import java.sql.*;
 
 public class FlightUtility {
 
-    public static Connection connect() {
+    public static Connection connect(String url) {
         Connection con = null;
         try {
             con = DriverManager.getConnection("jdbc:sqlite:Flights.db");

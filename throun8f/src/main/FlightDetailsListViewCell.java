@@ -38,12 +38,10 @@ public class FlightDetailsListViewCell extends ListCell<FlightDetails> {
         if(empty || flightDetails == null)
         {
             setText(null);
-            System.out.println("flightDetails is null");
-            //setGraphic(null);
+            setGraphic(null);
         }
         else
         {
-            System.out.println("flightDetails not null");
             if (mLLoader == null)
             {
                 mLLoader = new FXMLLoader(getClass().getResource("ListCell.fxml"));
