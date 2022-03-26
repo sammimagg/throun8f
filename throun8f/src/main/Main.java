@@ -6,11 +6,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 public class Main extends Application {
 
     @Override
@@ -31,24 +26,4 @@ public class Main extends Application {
 
 
     }
-    public static void search() throws ClassNotFoundException {
-       // Class.forName("org.sqlite.JDBC");
-        String url = "jdbc:sqlite:Flights.db";
-        Connection con = FlightUtility.connect(url);
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-
-
-        try {
-            String sql = "Select * from FlightDB";
-            ps = con.prepareStatement(sql);
-            rs = ps.executeQuery();
-            String res = rs.getString(1);
-            System.out.println(res);
-
-        } catch (SQLException e) {
-            System.out.println(e.toString());
-        }
-    }
-
 }

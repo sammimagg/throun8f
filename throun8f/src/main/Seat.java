@@ -1,20 +1,22 @@
 package main;
 
-public class Seat extends FlightDetails {
+public class Seat  {
     int id;
     int number;
     String details;
-
-
     int price;
     boolean booked;
 
 
-    public Seat(String arrivalDate, String arrivalTime, String departureDate, String departureTime) {
-        super(arrivalDate, arrivalTime, departureDate, departureTime);
+
+    public void add(Passenger passenger){
+
     }
+    public void update(Passenger passenger){
+
+    }
+
     public int getPrice() {
         return price;
     }
-
 }

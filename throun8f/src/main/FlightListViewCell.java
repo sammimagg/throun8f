@@ -9,7 +9,7 @@ import javafx.scene.text.Text;
 
 import java.io.IOException;
 
-public class FlightDetailsListViewCell extends ListCell<FlightDetails> {
+public class FlightListViewCell extends ListCell<Flight> {
     @FXML
     private Text textDestination;
 
@@ -17,7 +17,19 @@ public class FlightDetailsListViewCell extends ListCell<FlightDetails> {
     private Text textDepartureTime;
 
     @FXML
+    private Text textDepartureDate;
+
+    @FXML
     private Text textArrivalTime;
+
+    @FXML
+    private Text textArrivalDate;
+
+    @FXML
+    private Text textRoundOrOneWay;
+
+    @FXML
+    private Text textTotalFlightTime;
 
     @FXML
     private Text textPrice;
@@ -28,14 +40,17 @@ public class FlightDetailsListViewCell extends ListCell<FlightDetails> {
     @FXML
     private GridPane gridPane;
 
+    @FXML
+    private Text textDeparture;
+
     private FXMLLoader mLLoader;
 
     @Override
-    protected void updateItem(FlightDetails flightDetails,boolean empty)
+    protected void updateItem(Flight flight, boolean empty)
     {
-        super.updateItem(flightDetails,empty);
+        super.updateItem(flight,empty);
 
-        if(empty || flightDetails == null)
+        if(empty || flight == null)
         {
             setText(null);
             setGraphic(null);
@@ -55,10 +70,17 @@ public class FlightDetailsListViewCell extends ListCell<FlightDetails> {
                     e.printStackTrace();
                 }
             }
-            //textDepartureTime.setText(String.valueOf(flightDetails.getDepartureTime()));
-            //textArrivalTime.setText(String.valueOf(flightDetails.getArrivalTime()));
-            //textPrice.setText("16.900 kr.");
-            //textPassengers.setText("1");
+
+            textDeparture.setText(Controller.getDeparture());
+            textDepartureTime.setText(String.valueOf(flight.getFlights().getDepartureTime()));
+            textDepartureDate.setText(String.valueOf(flight.getFlights().getDepartureDate()));
+            textDestination.setText(Controller.getDestination());
+            textArrivalTime.setText(String.valueOf(flight.getFlights().getArrivalTime()));
+            textArrivalDate.setText(flight.getFlights().getArrivalDate());
+            //textRoundOrOneWay;
+            //textTotalFlightTime;
+            textPrice.setText("16000 kr");
+            textPassengers.setText(String.valueOf(Controller.getPassangerLabel()));
         }
         setText(null);
         setGraphic(gridPane);

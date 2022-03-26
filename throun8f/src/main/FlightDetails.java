@@ -6,6 +6,8 @@ public class FlightDetails {
     private String arrivalTime;
     private String departureDate;
     private String departureTime;
+    private Seat[] seats;
+    private Plane[] plane;
 
 
     public FlightDetails(String arrivalDate, String arrivalTime, String departureDate, String departureTime)
@@ -15,18 +17,34 @@ public class FlightDetails {
         this.departureDate = departureDate;
         this.departureTime = departureTime;
     }
-    public int getId() {
-        return id;
+    public Passenger getPassengers()
+    {
+        return null;
+    }
+    public Seat[] availableSeats()
+    {
+        return seats;
+    }
+    private void bookSeat(int id,Passenger passenger)
+    {
+
+    }
+    private void cancelSeat(int id, Passenger passenger)
+    {
+
     }
     public String getArrivalDate() {
         return arrivalDate;
     }
+
     public String getArrivalTime() {
         return arrivalTime;
     }
+
     public String getDepartureDate() {
         return departureDate;
     }
+
     public String getDepartureTime() {
         return departureTime;
     }

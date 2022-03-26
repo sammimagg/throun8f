@@ -9,6 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 
 import java.net.URL;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
@@ -27,11 +28,14 @@ public class Controller implements Initializable {
     @FXML
     private ComboBox<String> comboBoxTo;
     @FXML
-    private ListView<FlightDetails> flightDetailsListView;
+    private ListView<Flight> flightListView;
     @FXML
     private Button passengerMinusButton;
     @FXML
     private Button passengerPlusButton;
+
+
+
     @FXML
     private Label passangerLabel;
     @FXML
@@ -42,8 +46,9 @@ public class Controller implements Initializable {
     private Button bookButton;
     @FXML
     private Pane map;
-    ObservableList<FlightDetails> flightDetailsItems;
-    int passengerCount = 1;
+    ObservableList<Flight> flights =FXCollections.observableArrayList();
+    static int passengerCount = 1;
+    static String departure, destination;
 
     ObservableList<String> oneWayOrRoundtrip = FXCollections.observableArrayList("One Way","Round trip");
     ObservableList<String> destinations = FXCollections.observableArrayList("Akureyri","Reykjarvík","Ísafjörður","Egilsstaðir");
@@ -51,15 +56,11 @@ public class Controller implements Initializable {
     ObservableList<String> arrivalFromAkureyri = FXCollections.observableArrayList("Reykjarvík","Ísafjörður","Egilsstaðir");
     ObservableList<String> arrivalFromIsafjordur = FXCollections.observableArrayList("Akureyri","Reykjarvík","Egilsstaðir");
     ObservableList<String> arrivalFromEgilsstadir = FXCollections.observableArrayList("Akureyri","Ísafjörður","Reykjarvík");
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     public Controller() {
-        flightDetailsItems = FXCollections.observableArrayList();
-        flightDetailsItems.addAll(
-                new FlightDetails("12.12.22","11:00","12.12.22","11:30"),
-                new FlightDetails("12.12.22","11:00","12.12.22","11:30")
-        );
-
 
     }
+
     @FXML
     void OneWayHandler(ActionEvent event) {
 
@@ -87,10 +88,9 @@ public class Controller implements Initializable {
 
             comboBoxFrom.setItems(destinations);
             comboBoxTo.setItems(destinations);
-            flightDetailsListView.setItems(flightDetailsItems);
+            flightListView.setItems(flights);
+            flightListView.setCellFactory(FlightDetailsListView -> new FlightListViewCell());
 
-            flightDetailsListView.setCellFactory(FlightDetailsListView -> new FlightDetailsListViewCell());
-            System.out.println(flightDetailsItems.get(1).getDepartureTime());
 
     }
     @FXML
@@ -100,11 +100,11 @@ public class Controller implements Initializable {
     @FXML
     public void search(ActionEvent event) throws ClassNotFoundException {
         String destination = comboBoxTo.getValue();
-        String arrival = comboBoxFrom.getValue();
-        String date = String.valueOf(datePickerFrom.getValue());
-        String dateTo = String.valueOf(datePickerTo.getValue());
-        System.out.println("destination " + destination + ", arrival " +arrival + ", date "+ date + ", date to " + dateTo );
-        Main.search();
+        String departure = comboBoxFrom.getValue();
+        String dateToString = formatter.format(datePickerTo.getValue()).toString();
+        String dateFromString = formatter.format(datePickerFrom.getValue()).toString();
+        flights.removeAll();
+        flights.addAll(FlightController.search(departure, destination,dateFromString,  dateToString));
     }
     @FXML
     public void passengerCount(ActionEvent event)
@@ -115,4 +115,16 @@ public class Controller implements Initializable {
             passengerCount++;
         passangerLabel.setText(String.valueOf(passengerCount));
     }
+    public static int getPassangerLabel() {
+        return passengerCount;
+    }
+
+    public static String getDeparture() {
+        return departure;
+    }
+
+    public static String getDestination() {
+        return destination;
+    }
+
 }

@@ -251,7 +251,7 @@
                      </font></Text>
                </children>
             </HBox>
-            <ListView fx:id="flightDetailsListView" prefHeight="596.0" prefWidth="599.0" />
+            <ListView fx:id="flightListView" prefHeight="596.0" prefWidth="599.0" />
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
                   <Pane prefHeight="100.0" prefWidth="520.0" />
