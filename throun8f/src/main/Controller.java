@@ -103,6 +103,7 @@ public class Controller implements Initializable {
         String departure = comboBoxFrom.getValue();
         String dateToString = formatter.format(datePickerTo.getValue()).toString();
         String dateFromString = formatter.format(datePickerFrom.getValue()).toString();
+        System.out.println("Destination: " + destination + " departure: " + " dateTo: " + dateToString + " dateFrom: " + dateFromString);
         flights.removeAll();
         flights.addAll(FlightController.search(departure, destination,dateFromString,  dateToString));
     }

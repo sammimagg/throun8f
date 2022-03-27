@@ -10,6 +10,8 @@
       <root url="jar://$PROJECT_DIR$/throun8f/lib/javafx-controls-17-win.jar!/" />
       <root url="jar://$PROJECT_DIR$/throun8f/lib/javafx-fxml-17-win.jar!/" />
       <root url="jar://$PROJECT_DIR$/../../../../../sqlite/sqlite-jdbc-3.36.0.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/throun8f/lib/sqlite-jdbc-3.36.0.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/throun8f/lib/junit-4.13.2.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
