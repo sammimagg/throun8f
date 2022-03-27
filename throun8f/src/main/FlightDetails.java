@@ -6,22 +6,23 @@ public class FlightDetails {
     private String arrivalTime;
     private String departureDate;
     private String departureTime;
-    private Seat[] seats;
+    private Seat seats;
     private Plane[] plane;
 
 
-    public FlightDetails(String arrivalDate, String arrivalTime, String departureDate, String departureTime)
+    public FlightDetails(String arrivalDate, String arrivalTime, String departureDate, String departureTime,Seat seats)
     {
         this.arrivalDate = arrivalDate;
         this.arrivalTime = arrivalTime;
         this.departureDate = departureDate;
         this.departureTime = departureTime;
+        this.seats = seats;
     }
     public Passenger getPassengers()
     {
         return null;
     }
-    public Seat[] availableSeats()
+    public Seat availableSeats()
     {
         return seats;
     }

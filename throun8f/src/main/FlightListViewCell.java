@@ -79,7 +79,7 @@ public class FlightListViewCell extends ListCell<Flight> {
             textArrivalDate.setText(flight.getFlights().getArrivalDate());
             //textRoundOrOneWay;
             //textTotalFlightTime;
-            textPrice.setText("16000 kr");
+            textPrice.setText(String.valueOf(flight.flightDetails.availableSeats().getPrice()));
             textPassengers.setText(String.valueOf(Controller.getPassangerLabel()));
         }
         setText(null);

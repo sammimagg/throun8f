@@ -1,11 +1,21 @@
 package main;
 
 public class Seat  {
+
     int id;
     int number;
     String details;
     int price;
     boolean booked;
+    public Seat(int id, int number, String details, int price, boolean booked) {
+        this.id = id;
+        this.number = number;
+        this.details = details;
+        this.price = price;
+        this.booked = booked;
+    }
+
+
 
 
 

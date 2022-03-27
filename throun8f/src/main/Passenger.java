@@ -1,6 +1,6 @@
 package main;
 
-public class Passenger extends Seat {
+public class Passenger  {
     String name;
     String address;
     int zipCode;

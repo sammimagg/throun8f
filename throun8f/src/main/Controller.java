@@ -51,11 +51,11 @@ public class Controller implements Initializable {
     static String departure, destination;
 
     ObservableList<String> oneWayOrRoundtrip = FXCollections.observableArrayList("One Way","Round trip");
-    ObservableList<String> destinations = FXCollections.observableArrayList("Akureyri","Reykjarvík","Ísafjörður","Egilsstaðir");
+    ObservableList<String> destinations = FXCollections.observableArrayList("Akureyri","Reykjavík","Ísafjörður","Egilsstaðir");
     ObservableList<String> arrivalFromReykjarvik = FXCollections.observableArrayList("Akureyri","Ísafjörður","Egilsstaðir");
-    ObservableList<String> arrivalFromAkureyri = FXCollections.observableArrayList("Reykjarvík","Ísafjörður","Egilsstaðir");
-    ObservableList<String> arrivalFromIsafjordur = FXCollections.observableArrayList("Akureyri","Reykjarvík","Egilsstaðir");
-    ObservableList<String> arrivalFromEgilsstadir = FXCollections.observableArrayList("Akureyri","Ísafjörður","Reykjarvík");
+    ObservableList<String> arrivalFromAkureyri = FXCollections.observableArrayList("Reykjavík","Ísafjörður","Egilsstaðir");
+    ObservableList<String> arrivalFromIsafjordur = FXCollections.observableArrayList("Akureyri","Reykjavík","Egilsstaðir");
+    ObservableList<String> arrivalFromEgilsstadir = FXCollections.observableArrayList("Akureyri","Ísafjörður","Reykjavík");
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     public Controller() {
 
@@ -90,8 +90,6 @@ public class Controller implements Initializable {
             comboBoxTo.setItems(destinations);
             flightListView.setItems(flights);
             flightListView.setCellFactory(FlightDetailsListView -> new FlightListViewCell());
-
-
     }
     @FXML
     public void trip(ActionEvent event){
@@ -103,8 +101,12 @@ public class Controller implements Initializable {
         String departure = comboBoxFrom.getValue();
         String dateToString = formatter.format(datePickerTo.getValue()).toString();
         String dateFromString = formatter.format(datePickerFrom.getValue()).toString();
-        flights.removeAll();
-        flights.addAll(FlightController.search(departure, destination,dateFromString,  dateToString));
+        flights.removeAll(flightListView.getItems());
+        Flight f[] = FlightController.search(departure, destination,dateFromString,  dateToString);
+        if(f != null)
+            flights.addAll(f);
+        else
+            System.out.println("Empty");
     }
     @FXML
     public void passengerCount(ActionEvent event)
