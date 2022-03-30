@@ -6,34 +6,41 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
     @FXML
-    private DatePicker datePickerFrom;
+    private DatePicker fromDatePicker;
     @FXML
-    private DatePicker datePickerTo;
+    private DatePicker toDatePicker;
     @FXML
-    private RadioButton radiobuttonOneWay;
+    private RadioButton oneWayTripRadioButton;
     @FXML
-    private RadioButton radioButtonRoundTrip;
-    @FXML
-    private ComboBox<String> comboBoxOneOrTwo;
-    @FXML
-    private ComboBox<String>  comboBoxFrom;
-    @FXML
-    private ComboBox<String> comboBoxTo;
-    @FXML
-    private ListView<Flight> flightListView;
-    @FXML
-    private Button passengerMinusButton;
-    @FXML
-    private Button passengerPlusButton;
+    private RadioButton roundTripRadioButton;
 
+    @FXML
+    private ComboBox<String>  fromComboBox;
+    @FXML
+    private ComboBox<String> toComboBox;
+    @FXML
+    private ListView<Flight> departureListView;
+    @FXML
+    private ListView<Flight> returnListView;
+    @FXML
+    private HBox returnFlightHBoxResult;
+    @FXML
+    private HBox returnFlightHBoxTag;
+
+    @FXML
+    private VBox VBoxSearch;
 
 
     @FXML
@@ -45,12 +52,36 @@ public class Controller implements Initializable {
     @FXML
     private Button bookButton;
     @FXML
+    private Button passengerMinusButton;
+    @FXML
+    private Button passengerPlusButton;
+    @FXML
     private Pane map;
-    ObservableList<Flight> flights =FXCollections.observableArrayList();
-    static int passengerCount = 1;
-    static String departure, destination;
+    @FXML
+    private Text departureFromText;
+    @FXML
+    private Text departureToText;
+    @FXML
+    private Text departureResultText;
+    @FXML
+    private Text returnFromText;
+    @FXML
+    private Text returnToText;
+    @FXML
+    private Text returnResultText;
 
-    ObservableList<String> oneWayOrRoundtrip = FXCollections.observableArrayList("One Way","Round trip");
+
+
+    ObservableList<Flight> departureFlights = FXCollections.observableArrayList();
+    ObservableList<Flight> returnFlights    = FXCollections.observableArrayList();
+
+    static int passengerCount = 1;
+
+
+
+    static String departure,destination;
+
+
     ObservableList<String> destinations = FXCollections.observableArrayList("Akureyri","Reykjavík","Ísafjörður","Egilsstaðir");
     ObservableList<String> arrivalFromReykjarvik = FXCollections.observableArrayList("Akureyri","Ísafjörður","Egilsstaðir");
     ObservableList<String> arrivalFromAkureyri = FXCollections.observableArrayList("Reykjavík","Ísafjörður","Egilsstaðir");
@@ -64,50 +95,119 @@ public class Controller implements Initializable {
     @FXML
     void OneWayHandler(ActionEvent event) {
 
-        if (radiobuttonOneWay.isSelected()){
-            radioButtonRoundTrip.setSelected(false);
-            datePickerTo.setVisible(false);
+        if (oneWayTripRadioButton.isSelected()){
+            roundTripRadioButton.setSelected(false);
+            toDatePicker.setVisible(false);
             textDateTo.setText("");
+            returnListView.setVisible(false);
+            returnFlightHBoxResult.setVisible(false);
+            returnFlightHBoxTag.setVisible(false);
+            returnFlightHBoxResult.setPrefHeight(0);
+            System.out.println(Main.getWindowHeigh());
+            departureListView.setPrefHeight(VBoxSearch.getHeight()+100);
+            //
         }
         else {
             textDateTo.setText("Date To");
-            datePickerTo.setVisible(true);
+            toDatePicker.setVisible(true);
+            returnListView.setVisible(true);
         }
     }
     @FXML
     void RoundtripHandler(ActionEvent event) {
-        if (radioButtonRoundTrip.isSelected()){
-            radiobuttonOneWay.setSelected(false);
-            datePickerTo.setVisible(true);
+        if (roundTripRadioButton.isSelected()){
+            oneWayTripRadioButton.setSelected(false);
+            toDatePicker.setVisible(true);
             textDateTo.setText("Date To");
+            departureListView.setPrefHeight(VBoxSearch.getHeight()*0.5);
+            returnListView.setVisible(true);
+            returnFlightHBoxResult.setVisible(true);
+            returnFlightHBoxTag.setVisible(true);
+
         }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-            comboBoxFrom.setItems(destinations);
-            comboBoxTo.setItems(destinations);
-            flightListView.setItems(flights);
-            flightListView.setCellFactory(FlightDetailsListView -> new FlightListViewCell());
+            fromComboBox.setItems(destinations);
+            toComboBox.setItems(destinations);
+            fromComboBox.setValue("Reykjavík");
+            toComboBox.setValue("Akureyri");
+
+            fromDatePicker.setValue(LocalDate.now());
+            toDatePicker.setValue(LocalDate.now());
+            roundTripRadioButton.setSelected(true);
+            departureListView.setItems(departureFlights);
+            departureListView.setCellFactory(FlightDetailsListView -> new FlightListViewCell());
+            returnListView.setItems(returnFlights);
+            returnListView.setCellFactory(FlightDetailsListView -> new FlightListViewCell());
+
     }
     @FXML
     public void trip(ActionEvent event){
 
     }
     @FXML
+    public void bookHandler(ActionEvent event)
+    {
+        System.out.println("fds");
+        //departureListView.getSelectedItem();
+    }
+    @FXML
     public void search(ActionEvent event) throws ClassNotFoundException {
-        String destination = comboBoxTo.getValue();
-        String departure = comboBoxFrom.getValue();
-        String dateToString = formatter.format(datePickerTo.getValue()).toString();
-        String dateFromString = formatter.format(datePickerFrom.getValue()).toString();
+        String destination = toComboBox.getValue();
+        String departure = fromComboBox.getValue();
 
-        flights.removeAll(flightListView.getItems());
-        Flight f[] = FlightController.search(departure, destination,dateFromString,  dateToString);
-        if(f != null)
-            flights.addAll(f);
+        String dateFromString = formatter.format(fromDatePicker.getValue()).toString();
+        setDeparture(CityTag.getCityTag(fromComboBox.getValue()));
+        setDestination(CityTag.getCityTag(toComboBox.getValue()));
+
+
+
+        Flight departureFlightsResult[] = FlightController.search(departure, destination, dateFromString, dateFromString);
+        if (roundTripRadioButton.isSelected() == true)
+        {
+
+            String dateToString = formatter.format(toDatePicker.getValue()).toString();
+            departureFlights.removeAll(departureListView.getItems());
+            returnFlights.removeAll(returnListView.getItems());
+
+            Flight returnFlightsResult[] = FlightController.search(destination, departure, dateToString, dateToString);
+
+            departureFromText.setText(CityTag.getCityTag(fromComboBox.getValue()));
+            departureToText.setText(CityTag.getCityTag(toComboBox.getValue()));
+
+            returnFromText.setText(CityTag.getCityTag(toComboBox.getValue()));
+            returnToText.setText(CityTag.getCityTag(fromComboBox.getValue()));
+            if (departureFlightsResult != null && returnFlightsResult != null)
+            {
+                departureFlights.addAll(departureFlightsResult);
+                departureResultText.setText(String.valueOf(departureFlights.size()) + " results");
+                returnFlights.addAll(returnFlightsResult);
+                returnResultText.setText(String.valueOf(returnFlights.size()) + " results");
+            }
+            else
+            {
+                System.out.println("Empty");
+            }
+        }
         else
-            System.out.println("Empty");
+        {
+            departureFlights.removeAll(departureListView.getItems());
+            departureFromText.setText(CityTag.getCityTag(fromComboBox.getValue()));
+            departureToText.setText(CityTag.getCityTag(toComboBox.getValue()));
+
+            if (departureFlightsResult != null)
+            {
+                departureFlights.addAll(departureFlightsResult);
+                departureResultText.setText(String.valueOf(departureFlights.size()) + " results");
+            }
+            else
+            {
+                System.out.println("Empty");
+            }
+        }
     }
     @FXML
     public void passengerCount(ActionEvent event)
@@ -129,5 +229,13 @@ public class Controller implements Initializable {
     public static String getDestination() {
         return destination;
     }
+    public static void setDeparture(String departure) {
+        Controller.departure = departure;
+    }
+
+    public static void setDestination(String destination) {
+        Controller.destination = destination;
+    }
+
 
 }

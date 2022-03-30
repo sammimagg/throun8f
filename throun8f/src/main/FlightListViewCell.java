@@ -43,6 +43,8 @@ public class FlightListViewCell extends ListCell<Flight> {
     @FXML
     private Text textDeparture;
 
+
+
     private FXMLLoader mLLoader;
 
     @Override
@@ -71,16 +73,16 @@ public class FlightListViewCell extends ListCell<Flight> {
                 }
             }
 
-            textDeparture.setText(Controller.getDeparture());
+            textDeparture.setText(CityTag.getCityTag(flight.flightDetails.getDepartureCity()));
             textDepartureTime.setText(String.valueOf(flight.getFlights().getDepartureTime()));
             textDepartureDate.setText(String.valueOf(flight.getFlights().getDepartureDate()));
-            textDestination.setText(Controller.getDestination());
+            textDestination.setText(CityTag.getCityTag(flight.flightDetails.getArrivalCity()));
             textArrivalTime.setText(String.valueOf(flight.getFlights().getArrivalTime()));
             textArrivalDate.setText(flight.getFlights().getArrivalDate());
             //textRoundOrOneWay;
             //textTotalFlightTime;
-            textPrice.setText(String.valueOf(flight.flightDetails.availableSeats().getPrice()));
-            textPassengers.setText(String.valueOf(Controller.getPassangerLabel()));
+            textPrice.setText(String.valueOf(flight.flightDetails.availableSeats().getPrice())+ " kr.");
+            textPassengers.setText(String.valueOf("Passengers: "+ Controller.getPassangerLabel()));
         }
         setText(null);
         setGraphic(gridPane);

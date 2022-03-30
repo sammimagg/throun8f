@@ -29,11 +29,13 @@ public class FlightDatabaseUtility extends FlightController {
                 System.out.println(r.getString("arrivalDate"));
                 Seat seat = new Seat(1,1,"detail", r.getInt("ticketPrice"),false);
                 flight[i]=(new Flight(
+                                     destination,
                                      r.getString("arrivalDate"),
                                      r.getString("arrivalTime"),
+                                     departure,
                                      r.getString("departureDate"),
                                      r.getString("departureTime"),
-                                    seat
+                                     seat
                                     )
                         );
                 i++;

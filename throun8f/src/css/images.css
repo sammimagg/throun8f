@@ -1,7 +1,7 @@
 
 .background_img_airicelandconnect{
 	-fx-background-image: url('/img/airIcelandConnect.png');
-	-fx-background-size: 10em ;
+	-fx-background-size: 8em ;
 	-fx-background-position: center;
 	-fx-background-repeat: stretch
 }

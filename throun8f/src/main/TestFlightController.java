@@ -1,8 +1,5 @@
 package main;
 
-import org.junit.Test;
-import static org.junit.Assert.assertEquals;
-
 public class TestFlightController {
 
     String departure = "AEK";
@@ -11,7 +8,7 @@ public class TestFlightController {
     String dateTo = "08/07/22";
 
 
-    Flight[] f;
+    Flight f[];
 
     {
         try {
@@ -20,12 +17,13 @@ public class TestFlightController {
             e.printStackTrace();
         }
     }
+    Seat seat = new Seat(470,80,"...",25300,false);
+    //Flight results = new Flight("16/05/2022","15:00","16/05/2022","15:00", seat);
 
-    Flight[] results = new Flight(470, "AYE", "REK", "07/07/2022", "07/07/2022", "10:05","10:47:32",80,25300);
 
 
-    @Test
-    public void testPrintMessage() {
-        assertEquals(f,Flight);
-    }
+    //@Test
+    //public void testPrintMessage() {
+      //  assertEquals(f,results);
+    //}
 }

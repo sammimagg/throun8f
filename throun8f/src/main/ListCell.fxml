@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<GridPane fx:id="gridPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane fx:id="gridPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="154.0" minWidth="10.0" prefWidth="154.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="97.0" minWidth="10.0" prefWidth="91.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="159.0" minWidth="10.0" prefWidth="102.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.0" minWidth="10.0" prefWidth="37.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="97.0" minWidth="10.0" prefWidth="46.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="159.0" minWidth="10.0" prefWidth="63.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.0" minWidth="10.0" prefWidth="59.0" />
       <ColumnConstraints hgrow="SOMETIMES" />
   </columnConstraints>
   <rowConstraints>
@@ -24,7 +32,7 @@
       <Pane prefHeight="200.0" prefWidth="200.0" styleClass="background_img_airicelandconnect" stylesheets="@../css/images.css" />
       <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2">
          <children>
-            <Text fx:id="textDeparture" fill="#6f6f6f" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AKU" wrappingWidth="120.0">
+            <Text fx:id="textDeparture" fill="#6f6f6f" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AKU" wrappingWidth="120.0">
                <font>
                   <Font size="16.0" />
                </font></Text>
@@ -33,7 +41,7 @@
       <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" />
       <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4">
          <children>
-            <Text fx:id="textDestination" fill="#6f6f6f" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="RVK" wrappingWidth="96.0">
+            <Text fx:id="textDestination" fill="#6f6f6f" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" text="RVK" wrappingWidth="96.0">
                <font>
                   <Font size="16.0" />
                </font></Text>
@@ -48,9 +56,9 @@
             </Text>
          </children>
       </Pane>
-      <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+      <VBox prefHeight="200.0" prefWidth="85.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
          <children>
-            <Text fx:id="textDepartureTime" strokeType="OUTSIDE" strokeWidth="0.0" text="12:50 PM">
+            <Text fx:id="textDepartureTime" strokeType="OUTSIDE" strokeWidth="0.0" text="12:50">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -58,13 +66,17 @@
             <Text fx:id="textDepartureDate" fill="#6f6f6f" strokeType="OUTSIDE" strokeWidth="0.0" text="June 24" />
          </children>
       </VBox>
-      <Pane prefHeight="200.0" prefWidth="200.0" styleClass="icon_right_arrow" stylesheets="@../css/images.css" GridPane.columnIndex="3" GridPane.rowIndex="1">
+      <ImageView fitHeight="16.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
+         <image>
+            <Image url="@../img/rightArrow.png" />
+         </image>
          <GridPane.margin>
-            <Insets bottom="40.0" right="14.0" />
-         </GridPane.margin></Pane>
+            <Insets bottom="15.0" left="17.0" right="12.0" />
+         </GridPane.margin>
+      </ImageView>
       <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
          <children>
-            <Text fx:id="textArrivalTime" strokeType="OUTSIDE" strokeWidth="0.0" text="02:15 AM">
+            <Text fx:id="textArrivalTime" strokeType="OUTSIDE" strokeWidth="0.0" text="02:15">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -72,18 +84,6 @@
             <Text fx:id="textArrivalDate" fill="#6f6f6f" strokeType="OUTSIDE" strokeWidth="0.0" text="June 24" />
          </children>
       </VBox>
-      <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
-         <children>
-            <Pane maxHeight="25.0" maxWidth="25.0" minHeight="25.0" minWidth="25.0" prefHeight="25.0" prefWidth="25.0" styleClass="icon_round_trip" stylesheets="@../css/images.css" />
-            <Text fx:id="textRoundOrOneWay" strokeType="OUTSIDE" strokeWidth="0.0" text="Round trip" wrappingWidth="83.34375">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <HBox.margin>
-                  <Insets left="2.0" top="4.0" />
-               </HBox.margin></Text>
-         </children>
-      </HBox>
       <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="2">
          <children>
             <Pane maxHeight="25.0" maxWidth="25.0" minHeight="25.0" minWidth="25.0" prefHeight="25.0" prefWidth="25.0" styleClass="icon_time" stylesheets="@../css/images.css" />
