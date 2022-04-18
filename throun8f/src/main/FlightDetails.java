@@ -67,6 +67,7 @@ public class FlightDetails
     }
     public City getArrivalCity() { return arrivalAirport.name;}
     public City getDepartureCity() { return departureAirport.name;}
+
     public int getID()
     {
         return id;

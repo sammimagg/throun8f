@@ -7,23 +7,24 @@ import java.sql.*;
 import java.text.SimpleDateFormat;
 
 public class FlightDatabaseUtility extends FlightController {
-    public static void add(Flight flight){
-        int id = 1;
-        //String sql = "INSERT INTO Flights(id, departureAirport,arrivalAirport, departureDate, arrivalDate, departureTime, arrivalTime, seatsAvailable, ticketPrice) " +
-        //        "VALUES ('" +
-        //        id + "', '" +
-        //        flight.getFlights().getDepartureCity() + "', '" +
-        //        flight.getFlights().getArrivalCity() + "', '" +
-        //        flight.getFlights().getDepartureDate() + "', '" +
-        //        flight.getFlights().getArrivalDate() + "', '" +
-        //        flight.getFlights().getDepartureTime() + "','" +
-        //        flight.getFlights().getArrivalTime() + "','" +
-        //        flight.getFlights().getPassengers().
-//
 
+//    public static void book(FlightDetails flight) throws ClassNotFoundException {
+//        Class.forName("org.sqlite.JDBC");
+//        Connection connection = null;
+//        int id = flight.getId();
+//        int availableSeats = flight.availableSeats();
+//        try {
+//            connection = DriverManager.getConnection("jdbc:sqlite:.\\throun8f\\databases\\PassengerDB.db");
+//            Statement statement = connection.createStatement();
+//            String sql = "Update Flights set seatsAvailable = (address, email, name, phoneNumber, zipCode) values('" + passenger.address + "', '" + passenger.email + "', '" + passenger.name + "', " + passenger.phoneNum + ", " + passenger.zipCode + ");";
+//            statement.executeUpdate(sql);
+//            connection.close();
+//        } catch (SQLException e) {
+//            System.err.println(e.getMessage());
+//        }
+//    }
 
-    }
-    public static ObservableList<FlightDetails> search(String departure, String destination, String dateFrom, String dateTo) throws ClassNotFoundException
+    public static ObservableList<FlightDetails> search(String departure, String destination, String date) throws ClassNotFoundException
     {
         Class.forName("org.sqlite.JDBC");
         City arrivalAirport = CityTag.getCityTag(destination);     // Convert from Akureyri -> AEY
@@ -33,7 +34,7 @@ public class FlightDatabaseUtility extends FlightController {
         {
             connection = DriverManager.getConnection("jdbc:sqlite:.\\throun8f\\databases\\FlightsDB.db");
             Statement statement = connection.createStatement();
-            String sql = "Select * from Flights WHERE departureDate = '" + dateFrom + "'" + " AND departureAirport = '" + departureAirport + "'  AND arrivalAirPort = '" + arrivalAirport + "'";
+            String sql = "Select * from Flights WHERE departureDate = '" + date + "'" + " AND departureAirport = '" + departureAirport + "'  AND arrivalAirPort = '" + arrivalAirport + "'";
             ResultSet r = statement.executeQuery(sql);
             ResultSetMetaData rsmd = r.getMetaData();
             int count = rsmd.getColumnCount();
