@@ -53,7 +53,7 @@ public class FlightDetails
     }
     private void bookSeat(int id,Passenger passenger)
     {
-        
+
     }
     private void cancelSeat(int id, Passenger passenger)
     {
