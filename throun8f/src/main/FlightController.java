@@ -8,10 +8,10 @@ public class FlightController {
 
     static ObservableList<FlightDetails> flightdatabaseUtility;
 
-    public static ObservableList<FlightDetails> search(String departure, String destination, String dateFrom, String dateTo) throws ClassNotFoundException
+    public static ObservableList<FlightDetails> search(String departure, String destination, String date) throws ClassNotFoundException
     {
 
-        flightdatabaseUtility = FlightDatabaseUtility.search(departure, destination, dateFrom, dateTo);
+        flightdatabaseUtility = FlightDatabaseUtility.search(departure, destination, date);
         return flightdatabaseUtility;
     }
     public static void add(Flight flight)

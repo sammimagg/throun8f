@@ -169,10 +169,13 @@ public class Controller implements Initializable {
 
             Optional<ButtonType> clieckButton = dialog.showAndWait();
             if(clieckButton.get() == ButtonType.OK){
-
+                System.out.println("Adding passenger to database");
+                //tharf ad na i passenger
+                Passenger passenger = new Passenger("matti", "laugarvegur", 101, "mag", 873473);
+//                bookController.book(passenger);
             }
 
-        } catch (IOException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
 
@@ -187,7 +190,7 @@ public class Controller implements Initializable {
         setDeparture(CityTag.getCityTag(fromComboBox.getValue()));
         setDestination(CityTag.getCityTag(toComboBox.getValue()));
 
-        ObservableList<FlightDetails> departureFlightsResult = FXCollections.observableArrayList(FlightController.search(departure, destination, dateFromString, dateFromString));
+        ObservableList<FlightDetails> departureFlightsResult = FXCollections.observableArrayList(FlightController.search(departure, destination, dateFromString));
         if (roundTripRadioButton.isSelected() == true)
         {
 
@@ -195,7 +198,7 @@ public class Controller implements Initializable {
             departureFlights.removeAll(departureListView.getItems());
             returnFlights.removeAll(returnListView.getItems());
 
-            List<FlightDetails> returnFlightsResult = FlightController.search(destination, departure, dateToString, dateToString);
+            List<FlightDetails> returnFlightsResult = FlightController.search(destination, departure, dateToString);
 
             departureFromText.setText(String.valueOf(CityTag.getCityTag(fromComboBox.getValue())));
             departureToText.setText(String.valueOf(CityTag.getCityTag(toComboBox.getValue())));
