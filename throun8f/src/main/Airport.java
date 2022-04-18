@@ -2,13 +2,24 @@ package main;
 
 import java.util.Date;
 
-public class Airport {
-    String name;
+public class Airport
+{
+
+    City name;
     Flight flight[];
 
+    public Airport()
+    {
 
+    }
 
-    public Flight[] getFlight(Date dateFrom, Date dateT){
-        return null;
+    public Flight[] getFlight(City city, Date dateTo)
+    {
+        return flight;
+    }
+
+    public void setCityName(City name)
+    {
+        this.name = name;
     }
 }

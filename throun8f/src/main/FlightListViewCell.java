@@ -8,8 +8,10 @@ import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
+import java.text.NumberFormat;
+import java.util.Locale;
 
-public class FlightListViewCell extends ListCell<Flight> {
+public class FlightListViewCell extends ListCell<FlightDetails> {
     @FXML
     private Text textDestination;
 
@@ -42,17 +44,15 @@ public class FlightListViewCell extends ListCell<Flight> {
 
     @FXML
     private Text textDeparture;
-
-
-
+    @FXML
     private FXMLLoader mLLoader;
 
     @Override
-    protected void updateItem(Flight flight, boolean empty)
+    protected void updateItem(FlightDetails flightDetails, boolean empty)
     {
-        super.updateItem(flight,empty);
+        super.updateItem(flightDetails,empty);
 
-        if(empty || flight == null)
+        if(empty || flightDetails == null)
         {
             setText(null);
             setGraphic(null);
@@ -72,16 +72,20 @@ public class FlightListViewCell extends ListCell<Flight> {
                     e.printStackTrace();
                 }
             }
+            textDeparture.setText(String.valueOf(flightDetails.getArrivalCity()));
+            textDepartureTime.setText(String.valueOf(flightDetails.getDepartureTime()));
+            textDepartureDate.setText(String.valueOf(flightDetails.getDepartureDate()));
+            textDestination.setText(String.valueOf((flightDetails.getDepartureCity())));
+            textArrivalTime.setText(String.valueOf(flightDetails.getArrivalTime()));
+            textArrivalDate.setText(String.valueOf(flightDetails.getArrivalDate()));
+            //int test = Integer.parseInt(flightDetails.getArrivalTime()) - Integer.parseInt(flightDetails.getDepartureTime());
+            //System.out.println(test);
 
-            textDeparture.setText(CityTag.getCityTag(flight.flightDetails.getDepartureCity()));
-            textDepartureTime.setText(String.valueOf(flight.getFlights().getDepartureTime()));
-            textDepartureDate.setText(String.valueOf(flight.getFlights().getDepartureDate()));
-            textDestination.setText(CityTag.getCityTag(flight.flightDetails.getArrivalCity()));
-            textArrivalTime.setText(String.valueOf(flight.getFlights().getArrivalTime()));
-            textArrivalDate.setText(flight.getFlights().getArrivalDate());
-            //textRoundOrOneWay;
-            //textTotalFlightTime;
-            textPrice.setText(String.valueOf(flight.flightDetails.availableSeats().getPrice())+ " kr.");
+            textTotalFlightTime.setText(Hours.tripTime(flightDetails.getDepartureTime(), flightDetails.getArrivalTime()));
+            Locale icelandic = new Locale("is","IS");
+            NumberFormat defaultFormat = NumberFormat.getCurrencyInstance(icelandic);
+
+            textPrice.setText(defaultFormat.format(flightDetails.getSeats()[0].getPrice()));
             textPassengers.setText(String.valueOf("Passengers: "+ Controller.getPassangerLabel()));
         }
         setText(null);

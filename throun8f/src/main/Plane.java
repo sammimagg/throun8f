@@ -1,13 +1,18 @@
 package main;
 
-public class Plane {
-    String model;
-    int SeatCapacity;
+public class Plane{
+    private String model;
+    private int seatCapacity;
 
+    public Plane(String model, int seatCapacity)
+    {
 
-
-    private Plane getPlane(){
-        return null;
+        this.seatCapacity = seatCapacity;
+        this.model = "Boeing 747";
+    }
+    public int getSeatCapacity()
+    {
+        return seatCapacity;
     }
 
 }

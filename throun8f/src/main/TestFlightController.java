@@ -11,13 +11,14 @@ public class TestFlightController {
     Flight f[];
 
     {
-        try {
-            f = FlightController.search(departure, destination, dateFrom,  dateTo);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+        //try {
+           // f = FlightController.search(departure, destination, dateFrom,  dateTo);
+        //}
+        //catch (ClassNotFoundException e) {
+         //   e.printStackTrace();
         }
-    }
-    Seat seat = new Seat(470,80,"...",25300,false);
+    //}
+    //Seat seat = new Seat(470,80,"...",25300,false);
     //Flight results = new Flight("16/05/2022","15:00","16/05/2022","15:00", seat);
 
 

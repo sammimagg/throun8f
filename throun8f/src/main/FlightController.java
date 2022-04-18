@@ -1,18 +1,22 @@
 package main;
 
+
+import javafx.collections.ObservableList;
+
 public class FlightController {
 
 
-    static Flight[] flightdatabaseUtility;
+    static ObservableList<FlightDetails> flightdatabaseUtility;
 
-    public static Flight[] search(String departure, String destination, String dateFrom, String dateTo) throws ClassNotFoundException {
+    public static ObservableList<FlightDetails> search(String departure, String destination, String dateFrom, String dateTo) throws ClassNotFoundException
+    {
 
         flightdatabaseUtility = FlightDatabaseUtility.search(departure, destination, dateFrom, dateTo);
         return flightdatabaseUtility;
     }
     public static void add(Flight flight)
     {
-
+        FlightDatabaseUtility.add(flight);
     }
     public static void remove(Flight flight)
     {
@@ -22,7 +26,7 @@ public class FlightController {
     {
 
     }
-    public Flight[] getFlightdatabaseUtility()
+    public ObservableList<FlightDetails> getFlightdatabaseUtility()
     {
         return flightdatabaseUtility;
     }

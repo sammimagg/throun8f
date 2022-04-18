@@ -1,13 +1,19 @@
 package main;
 
-public class Flight {
-    FlightDetails flightDetails;
+import java.util.Date;
+import java.util.List;
 
-    public Flight(String arrivalCity, String arrivalDate, String arrivalTime,String departureCity, String departureDate, String departureTime, Seat seats) {
-       flightDetails = new FlightDetails(arrivalCity, arrivalDate, arrivalTime,departureCity, departureDate, departureTime, seats);
+public class Flight
+{
+    public List<FlightDetails> flightDetails;
+
+    public Flight(List<FlightDetails> flightDetails)
+    {
+        this.flightDetails = flightDetails;
     }
 
-    public  FlightDetails getFlights(){
+    public List<FlightDetails> getFlights(String departure, String destination, Date date)
+    {
         return flightDetails;
     }
 }

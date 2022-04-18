@@ -1,34 +1,55 @@
 package main;
 
-public class FlightDetails {
+public class FlightDetails
+{
     private int id;
-    private String arrivalCity;
+    private Airport arrivalAirport;
+    private Airport departureAirport;
+    private Plane plane;
     private String arrivalDate;
     private String arrivalTime;
-    private String departureCity;
     private String departureDate;
     private String departureTime;
-    private Seat seats;
-    private Plane[] plane;
+    private Seat[] seats;
 
 
-    public FlightDetails(String arrivalCity,String arrivalDate, String arrivalTime,String departureCity, String departureDate, String departureTime,Seat seats)
+
+    public FlightDetails(City arrivalCity, String  arrivalDate, String arrivalTime, City departureCity, String departureDate, String departureTime)
     {
-        this.arrivalCity = arrivalCity;
         this.arrivalDate = arrivalDate;
         this.arrivalTime = arrivalTime;
-        this.departureCity = departureCity;
         this.departureDate = departureDate;
         this.departureTime = departureTime;
+        this.departureAirport = new Airport();
+        this.arrivalAirport = new Airport();
+        arrivalAirport.setCityName(arrivalCity);
+        departureAirport.setCityName(departureCity);
+
+
+    }
+    public void setArrivalAirport(Airport airport)
+    {
+        this.arrivalAirport = airport;
+    }
+    public void setDepartureAirport(Airport airport)
+    {
+        this.departureAirport = airport;
+    }
+    public void setSeats(Seat[] seats){
         this.seats = seats;
     }
+    public Seat[] getSeats()
+    {
+        return seats;
+    }
+
     public Passenger getPassengers()
     {
         return null;
     }
-    public Seat availableSeats()
+    public Seat[] availableSeats()
     {
-        return seats;
+        return this.seats;
     }
     private void bookSeat(int id,Passenger passenger)
     {
@@ -50,6 +71,8 @@ public class FlightDetails {
     public String getDepartureTime() {
         return departureTime;
     }
-    public String getArrivalCity() { return arrivalCity;}
-    public String getDepartureCity() { return departureCity;}
+    public City getArrivalCity() { return arrivalAirport.name;}
+    public City getDepartureCity() { return departureAirport.name;}
+
+
 }

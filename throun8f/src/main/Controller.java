@@ -14,6 +14,7 @@ import javafx.scene.text.Text;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
@@ -31,9 +32,9 @@ public class Controller implements Initializable {
     @FXML
     private ComboBox<String> toComboBox;
     @FXML
-    private ListView<Flight> departureListView;
+    private ListView<FlightDetails> departureListView;
     @FXML
-    private ListView<Flight> returnListView;
+    private ListView<FlightDetails> returnListView;
     @FXML
     private HBox returnFlightHBoxResult;
     @FXML
@@ -70,17 +71,11 @@ public class Controller implements Initializable {
     @FXML
     private Text returnResultText;
 
-
-
-    ObservableList<Flight> departureFlights = FXCollections.observableArrayList();
-    ObservableList<Flight> returnFlights    = FXCollections.observableArrayList();
+    ObservableList<FlightDetails> departureFlights = FXCollections.observableArrayList();
+    ObservableList<FlightDetails> returnFlights    = FXCollections.observableArrayList();
 
     static int passengerCount = 1;
-
-
-
-    static String departure,destination;
-
+    static City departure,destination;
 
     ObservableList<String> destinations = FXCollections.observableArrayList("Akureyri","Reykjavík","Ísafjörður","Egilsstaðir");
     ObservableList<String> arrivalFromReykjarvik = FXCollections.observableArrayList("Akureyri","Ísafjörður","Egilsstaðir");
@@ -134,7 +129,6 @@ public class Controller implements Initializable {
             toComboBox.setItems(destinations);
             fromComboBox.setValue("Reykjavík");
             toComboBox.setValue("Akureyri");
-
             fromDatePicker.setValue(LocalDate.now());
             toDatePicker.setValue(LocalDate.now());
             roundTripRadioButton.setSelected(true);
@@ -142,7 +136,6 @@ public class Controller implements Initializable {
             departureListView.setCellFactory(FlightDetailsListView -> new FlightListViewCell());
             returnListView.setItems(returnFlights);
             returnListView.setCellFactory(FlightDetailsListView -> new FlightListViewCell());
-
     }
     @FXML
     public void trip(ActionEvent event){
@@ -163,9 +156,7 @@ public class Controller implements Initializable {
         setDeparture(CityTag.getCityTag(fromComboBox.getValue()));
         setDestination(CityTag.getCityTag(toComboBox.getValue()));
 
-
-
-        Flight departureFlightsResult[] = FlightController.search(departure, destination, dateFromString, dateFromString);
+        ObservableList<FlightDetails> departureFlightsResult = FXCollections.observableArrayList(FlightController.search(departure, destination, dateFromString, dateFromString));
         if (roundTripRadioButton.isSelected() == true)
         {
 
@@ -173,15 +164,17 @@ public class Controller implements Initializable {
             departureFlights.removeAll(departureListView.getItems());
             returnFlights.removeAll(returnListView.getItems());
 
-            Flight returnFlightsResult[] = FlightController.search(destination, departure, dateToString, dateToString);
+            List<FlightDetails> returnFlightsResult = FlightController.search(destination, departure, dateToString, dateToString);
 
-            departureFromText.setText(CityTag.getCityTag(fromComboBox.getValue()));
-            departureToText.setText(CityTag.getCityTag(toComboBox.getValue()));
+            departureFromText.setText(String.valueOf(CityTag.getCityTag(fromComboBox.getValue())));
+            departureToText.setText(String.valueOf(CityTag.getCityTag(toComboBox.getValue())));
 
-            returnFromText.setText(CityTag.getCityTag(toComboBox.getValue()));
-            returnToText.setText(CityTag.getCityTag(fromComboBox.getValue()));
+            returnFromText.setText(String.valueOf(CityTag.getCityTag(toComboBox.getValue())));
+            returnToText.setText(String.valueOf(CityTag.getCityTag(fromComboBox.getValue())));
             if (departureFlightsResult != null && returnFlightsResult != null)
             {
+
+                System.out.println(departureFlightsResult.size());
                 departureFlights.addAll(departureFlightsResult);
                 departureResultText.setText(String.valueOf(departureFlights.size()) + " results");
                 returnFlights.addAll(returnFlightsResult);
@@ -195,8 +188,8 @@ public class Controller implements Initializable {
         else
         {
             departureFlights.removeAll(departureListView.getItems());
-            departureFromText.setText(CityTag.getCityTag(fromComboBox.getValue()));
-            departureToText.setText(CityTag.getCityTag(toComboBox.getValue()));
+            departureFromText.setText(String.valueOf(CityTag.getCityTag(fromComboBox.getValue())));
+            departureToText.setText(String.valueOf(CityTag.getCityTag(toComboBox.getValue())));
 
             if (departureFlightsResult != null)
             {
@@ -222,18 +215,18 @@ public class Controller implements Initializable {
         return passengerCount;
     }
 
-    public static String getDeparture() {
+    public static City getDeparture() {
         return departure;
     }
 
-    public static String getDestination() {
+    public static City getDestination() {
         return destination;
     }
-    public static void setDeparture(String departure) {
+    public static void setDeparture(City departure) {
         Controller.departure = departure;
     }
 
-    public static void setDestination(String destination) {
+    public static void setDestination(City destination) {
         Controller.destination = destination;
     }
 
