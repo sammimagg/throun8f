@@ -2,6 +2,8 @@ package main;
 
 public class Seat  {
 
+
+
     int id;
     int number;
     String details;
@@ -27,5 +29,9 @@ public class Seat  {
     public int getPrice()
     {
         return price;
+    }
+
+    public int getId() {
+        return id;
     }
 }

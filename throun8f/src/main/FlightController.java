@@ -10,7 +10,6 @@ public class FlightController {
 
     public static ObservableList<FlightDetails> search(String departure, String destination, String date) throws ClassNotFoundException
     {
-
         flightdatabaseUtility = FlightDatabaseUtility.search(departure, destination, date);
         return flightdatabaseUtility;
     }
@@ -22,8 +21,10 @@ public class FlightController {
     {
 
     }
-    public static void book(Seat seat, int FlightID, Passenger passenger)
-    {
+    public static void book(Seat seat, FlightDetails flightDetails, Passenger passenger) throws ClassNotFoundException {
+        BookController.book(passenger,seat.getId(),flightDetails);
+        flightdatabaseUtility = FlightDatabaseUtility.update(flightDetails);
+        
 
     }
     public ObservableList<FlightDetails> getFlightdatabaseUtility()

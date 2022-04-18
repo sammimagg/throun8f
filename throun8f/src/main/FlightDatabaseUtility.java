@@ -79,6 +79,24 @@ public class FlightDatabaseUtility extends FlightController {
         }
         return null;
     }
+public static ObservableList<FlightDetails> update(FlightDetails flightDetails) throws ClassNotFoundException
+{
+    Class.forName("org.sqlite.JDBC");
+        Connection connection = null;
+        int availableSeat = flightDetails.numberOfSeatsAvailable() - 1;
+        // UPDATE Flights SET seatsAvaialble = nytt WHERE id = flightid
+        try {
+            connection = DriverManager.getConnection("jdbc:sqlite:.\\throun8f\\databases\\FlightsDB.db");
+            Statement statement = connection.createStatement();
+            String sql =  "UPDATE Flights SET seatsAvailable = " + availableSeat + " WHERE id = " + flightDetails.getID();
+            System.out.println(sql);
+            statement.executeUpdate(sql);
+            connection.close();
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        return null;
+}
 
 
 }

@@ -143,53 +143,39 @@ public class Controller implements Initializable {
 
     }
     @FXML
-    public void bookHandler(ActionEvent event)
-    {
-
-        // Round Trip
-        if(roundTripRadioButton.isSelected() == true && returnListView.getSelectionModel().isEmpty() == false && returnListView.getSelectionModel().isEmpty() == false)
+    public void bookHandler(ActionEvent event) throws ClassNotFoundException {
+        for(int i = 0 ;i< passengerCount;i++)
         {
-            Passenger passenger =  BookDialogController.getPassenger();
+            // Round Trip
+            if(roundTripRadioButton.isSelected() == true && returnListView.getSelectionModel().isEmpty() == false && returnListView.getSelectionModel().isEmpty() == false) {
+                Passenger passenger = BookDialogController.getPassenger();
 
-            // Booking for departure
-            FlightController.book(
-                                  returnListView.getSelectionModel().getSelectedItem().getAvailableSeat(),
-                                  returnListView.getSelectionModel().getSelectedItem().getID(),
-                                  passenger
-                                  );
-            //Booking for destination
-            FlightController.book(
-                                  returnListView.getSelectionModel().getSelectedItem().getAvailableSeat(),
-                                  returnListView.getSelectionModel().getSelectedItem().getID(),
-                                  passenger
-                                  );
+                // Booking for departure
+                FlightController.book(
+                        returnListView.getSelectionModel().getSelectedItem().getAvailableSeat(),
+                        returnListView.getSelectionModel().getSelectedItem(),
+                        passenger
+                );
+                //Booking for destination
+                FlightController.book(
+                        returnListView.getSelectionModel().getSelectedItem().getAvailableSeat(),
+                        returnListView.getSelectionModel().getSelectedItem(),
+                        passenger
+                );
 
-
-            Optional<ButtonType> clieckButton = dialog.showAndWait();
-            if(clieckButton.get() == ButtonType.OK){
-                System.out.println("Adding passenger to database");
-                //tharf ad na i passenger
-                Passenger passenger = new Passenger("matti", "laugarvegur", 101, "mag", 873473);
-//                bookController.book(passenger);
             }
-
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+            // OneWay trip
+            if(oneWayTripRadioButton.isSelected() == true && departureListView.getSelectionModel().isEmpty() == false)
+            {
+                Passenger passenger =  BookDialogController.getPassenger();
+                //Booking for destination
+                FlightController.book(
+                        departureListView.getSelectionModel().getSelectedItem().getAvailableSeat(),
+                        departureListView.getSelectionModel().getSelectedItem(),
+                        passenger
+                );
+            }
         }
-        // OneWay trip
-        if(oneWayTripRadioButton.isSelected() == true && departureListView.getSelectionModel().isEmpty() == false)
-        {
-            Passenger passenger =  BookDialogController.getPassenger();
-            //Booking for destination
-            FlightController.book(
-                    departureListView.getSelectionModel().getSelectedItem().getAvailableSeat(),
-                    departureListView.getSelectionModel().getSelectedItem().getID(),
-                    passenger
-            );
-        }
-
-
-
     }
     @FXML
     public void search(ActionEvent event) throws ClassNotFoundException {

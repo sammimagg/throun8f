@@ -93,5 +93,9 @@ public class FlightDetails
         System.out.println("No seats");
         return null;
     }
+    public int numberOfSeatsAvailable()
+    {
+        return seats.length;
+    }
 
 }

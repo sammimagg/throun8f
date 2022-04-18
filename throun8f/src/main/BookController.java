@@ -4,8 +4,8 @@ package main;
 public class BookController {
     private static UserDatabaseUtility databaseUtility;
 
-    public static void book(Passenger passenger, int seatId, int flightId) throws ClassNotFoundException
+    public static void book(Passenger passenger, int seatId, FlightDetails flightDetails) throws ClassNotFoundException
     {
-        databaseUtility.add(passenger, seatId, flightId);
+        databaseUtility.add(passenger, seatId, flightDetails);
     }
 }
