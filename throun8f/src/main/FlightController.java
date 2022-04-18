@@ -30,6 +30,4 @@ public class FlightController {
     {
         return flightdatabaseUtility;
     }
-
-
 }
