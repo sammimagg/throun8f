@@ -46,6 +46,8 @@ public class FlightListViewCell extends ListCell<FlightDetails> {
     private Text textDeparture;
     @FXML
     private FXMLLoader mLLoader;
+    @FXML
+    private Boolean selected;
 
     @Override
     protected void updateItem(FlightDetails flightDetails, boolean empty)

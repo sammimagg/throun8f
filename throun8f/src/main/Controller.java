@@ -144,8 +144,16 @@ public class Controller implements Initializable {
     @FXML
     public void bookHandler(ActionEvent event)
     {
-        System.out.println("fds");
-        //departureListView.getSelectedItem();
+
+
+       FlightDetails selectedItemDeparture = departureListView.getSelectionModel().getSelectedItem();
+
+       FlightDetails selectedItemReturn = returnListView.getSelectionModel().getSelectedItem();
+
+       System.out.println("Booking departure: " + selectedItemDeparture.getDepartureCity() + " return: " + selectedItemReturn);
+
+
+
     }
     @FXML
     public void search(ActionEvent event) throws ClassNotFoundException {

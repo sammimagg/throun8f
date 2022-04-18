@@ -9,17 +9,17 @@ import java.text.SimpleDateFormat;
 public class FlightDatabaseUtility extends FlightController {
     public static void add(Flight flight){
         int id = 1;
-        //String sql = "INSERT INTO Flights(id, departureAirport,arrivalAirport, departureDate, arrivalDate, departureTime, arrivalTime, seatsAvailable, ticketPrice) " +
-        //        "VALUES ('" +
-        //        id + "', '" +
-        //        flight.getFlights().getDepartureCity() + "', '" +
-        //        flight.getFlights().getArrivalCity() + "', '" +
-        //        flight.getFlights().getDepartureDate() + "', '" +
-        //        flight.getFlights().getArrivalDate() + "', '" +
-        //        flight.getFlights().getDepartureTime() + "','" +
-        //        flight.getFlights().getArrivalTime() + "','" +
-        //        flight.getFlights().getPassengers().
-//
+//        String sql = "INSERT INTO Flights(id, departureAirport,arrivalAirport, departureDate, arrivalDate, departureTime, arrivalTime, seatsAvailable, ticketPrice) " +
+//                "VALUES ('" +
+//                id + "', '" +
+//                flight.getFlights().getDepartureCity() + "', '" +
+//                flight.getFlights().getArrivalCity() + "', '" +
+//                flight.getFlights().getDepartureDate() + "', '" +
+//                flight.getFlights().getArrivalDate() + "', '" +
+//                flight.getFlights().getDepartureTime() + "','" +
+//                flight.getFlights().getArrivalTime() + "','" +
+//                flight.getFlights().getPassengers().
+
 
 
     }
