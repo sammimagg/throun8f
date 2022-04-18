@@ -24,10 +24,10 @@ public class BookDialogController implements Initializable {
 
         dialog.setResizable(true);
         Label nameLabel = new Label("Name: ");
-        Label addressLable = new Label("Address: ");
-        Label zipCodeLable = new Label("ZipCode");
-        Label emailLable = new Label("Email");
-        Label phoneNumLable = new Label("Phone number");
+        Label addressLabel = new Label("Address: ");
+        Label zipCodeLabel = new Label("ZipCode");
+        Label emailLabel = new Label("Email");
+        Label phoneNumLabel = new Label("Phone number");
 
         TextField nameTextField = new TextField();
         TextField addressTextField = new TextField();
@@ -38,10 +38,10 @@ public class BookDialogController implements Initializable {
         GridPane grid = new GridPane();
 
         grid.add(nameLabel, 1, 1);
-        grid.add(addressLable, 1, 2);
-        grid.add(zipCodeLable, 1, 3);
-        grid.add(emailLable, 1, 4);
-        grid.add(phoneNumLable, 1, 5);
+        grid.add(addressLabel, 1, 2);
+        grid.add(zipCodeLabel, 1, 3);
+        grid.add(emailLabel, 1, 4);
+        grid.add(phoneNumLabel, 1, 5);
 
         grid.add(nameTextField, 2, 1);
         grid.add(addressTextField, 2, 2);
@@ -50,9 +50,7 @@ public class BookDialogController implements Initializable {
         grid.add(phoneTextField, 2, 5);
 
         dialog.getDialogPane().setContent(grid);
-
         dialog.getDialogPane().getButtonTypes().add(buttonTypeOk);
-
 
         dialog.setResultConverter(new Callback<ButtonType, Passenger>() {
             @Override
