@@ -35,13 +35,7 @@ public class FlightDetails
     {
         this.departureAirport = airport;
     }
-    public void setSeats(Seat[] seats){
-        this.seats = seats;
-    }
-    public Seat[] getSeats()
-    {
-        return seats;
-    }
+
 
     public Passenger getPassengers()
     {
@@ -73,7 +67,31 @@ public class FlightDetails
     }
     public City getArrivalCity() { return arrivalAirport.name;}
     public City getDepartureCity() { return departureAirport.name;}
-    public int getId() { return id;}
 
+    public int getID()
+    {
+        return id;
+    }
+    public void setID(int id){
+        this.id = id;
+    }
+    public void setSeats(Seat[] seats){
+        this.seats = seats;
+    }
+    public Seat[] getSeats()
+    {
+        return seats;
+    }
+    public Seat getAvailableSeat(){
+        for(int i = 0; i < seats.length; i++)
+        {
+            if(seats[i].booked == false)
+            {
+                return seats[i];
+            }
+        }
+        System.out.println("No seats");
+        return null;
+    }
 
 }

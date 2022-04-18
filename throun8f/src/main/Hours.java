@@ -11,7 +11,8 @@ public class Hours {
         SimpleDateFormat format = new SimpleDateFormat("hh:mm");
         Date timeDateFrom = null;
         Date timeDateTo = null;
-        try{
+        try
+        {
             timeDateFrom = format.parse(from);
             timeDateTo = format.parse(to);
         }
@@ -21,6 +22,7 @@ public class Hours {
         }
         long diffrence = timeDateTo.getTime() - timeDateFrom.getTime();
         String result = String.format("%s h %s m", Long.toString(TimeUnit.MILLISECONDS.toHours(diffrence)) , TimeUnit.MILLISECONDS.toMinutes(diffrence));
+
 
         return result;
     }

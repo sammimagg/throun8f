@@ -4,7 +4,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
@@ -12,12 +11,10 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
@@ -149,23 +146,24 @@ public class Controller implements Initializable {
     public void bookHandler(ActionEvent event)
     {
 
-
-       FlightDetails selectedItemDeparture = departureListView.getSelectionModel().getSelectedItem();
-
-       FlightDetails selectedItemReturn = returnListView.getSelectionModel().getSelectedItem();
-
-       System.out.println("Booking departure: " + selectedItemDeparture.getDepartureCity() + " return: " + selectedItemReturn);
-
-
-        try
+        // Round Trip
+        if(roundTripRadioButton.isSelected() == true && returnListView.getSelectionModel().isEmpty() == false && returnListView.getSelectionModel().isEmpty() == false)
         {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("BookDialog.fxml"));
-            DialogPane bookDialogPane = fxmlLoader.load();
+            Passenger passenger =  BookDialogController.getPassenger();
 
-            BookController bookController = fxmlLoader.getController();
-            Dialog<ButtonType> dialog = new Dialog<>();
-            dialog.setDialogPane(bookDialogPane);;
+            // Booking for departure
+            FlightController.book(
+                                  returnListView.getSelectionModel().getSelectedItem().getAvailableSeat(),
+                                  returnListView.getSelectionModel().getSelectedItem().getID(),
+                                  passenger
+                                  );
+            //Booking for destination
+            FlightController.book(
+                                  returnListView.getSelectionModel().getSelectedItem().getAvailableSeat(),
+                                  returnListView.getSelectionModel().getSelectedItem().getID(),
+                                  passenger
+                                  );
+
 
             Optional<ButtonType> clieckButton = dialog.showAndWait();
             if(clieckButton.get() == ButtonType.OK){
@@ -178,6 +176,18 @@ public class Controller implements Initializable {
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
+        // OneWay trip
+        if(oneWayTripRadioButton.isSelected() == true && departureListView.getSelectionModel().isEmpty() == false)
+        {
+            Passenger passenger =  BookDialogController.getPassenger();
+            //Booking for destination
+            FlightController.book(
+                    departureListView.getSelectionModel().getSelectedItem().getAvailableSeat(),
+                    departureListView.getSelectionModel().getSelectedItem().getID(),
+                    passenger
+            );
+        }
+
 
 
     }
@@ -207,8 +217,6 @@ public class Controller implements Initializable {
             returnToText.setText(String.valueOf(CityTag.getCityTag(fromComboBox.getValue())));
             if (departureFlightsResult != null && returnFlightsResult != null)
             {
-
-                System.out.println(departureFlightsResult.size());
                 departureFlights.addAll(departureFlightsResult);
                 departureResultText.setText(String.valueOf(departureFlights.size()) + " results");
                 returnFlights.addAll(returnFlightsResult);
@@ -254,14 +262,17 @@ public class Controller implements Initializable {
         return departure;
     }
 
-    public static City getDestination() {
+    public static City getDestination()
+    {
         return destination;
     }
-    public static void setDeparture(City departure) {
+    public static void setDeparture(City departure)
+    {
         Controller.departure = departure;
     }
 
-    public static void setDestination(City destination) {
+    public static void setDestination(City destination)
+    {
         Controller.destination = destination;
     }
 

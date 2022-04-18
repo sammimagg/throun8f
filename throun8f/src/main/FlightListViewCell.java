@@ -46,8 +46,6 @@ public class FlightListViewCell extends ListCell<FlightDetails> {
     private Text textDeparture;
     @FXML
     private FXMLLoader mLLoader;
-    @FXML
-    private Boolean selected;
 
     @Override
     protected void updateItem(FlightDetails flightDetails, boolean empty)
@@ -80,8 +78,6 @@ public class FlightListViewCell extends ListCell<FlightDetails> {
             textDestination.setText(String.valueOf((flightDetails.getDepartureCity())));
             textArrivalTime.setText(String.valueOf(flightDetails.getArrivalTime()));
             textArrivalDate.setText(String.valueOf(flightDetails.getArrivalDate()));
-            //int test = Integer.parseInt(flightDetails.getArrivalTime()) - Integer.parseInt(flightDetails.getDepartureTime());
-            //System.out.println(test);
 
             textTotalFlightTime.setText(Hours.tripTime(flightDetails.getDepartureTime(), flightDetails.getArrivalTime()));
             Locale icelandic = new Locale("is","IS");
