@@ -20,7 +20,7 @@ public class Hours {
             e.printStackTrace();
         }
         long diffrence = timeDateTo.getTime() - timeDateFrom.getTime();
-        String result = String.format("[%s] h : [%s] m", Long.toString(TimeUnit.MILLISECONDS.toHours(diffrence)) , TimeUnit.MILLISECONDS.toMinutes(diffrence));
+        String result = String.format("%s h %s m", Long.toString(TimeUnit.MILLISECONDS.toHours(diffrence)) , TimeUnit.MILLISECONDS.toMinutes(diffrence));
 
         return result;
     }

@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
@@ -11,10 +12,12 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
@@ -109,7 +112,8 @@ public class Controller implements Initializable {
         }
     }
     @FXML
-    void RoundtripHandler(ActionEvent event) {
+    void RoundtripHandler(ActionEvent event)
+    {
         if (roundTripRadioButton.isSelected()){
             oneWayTripRadioButton.setSelected(false);
             toDatePicker.setVisible(true);
@@ -144,8 +148,27 @@ public class Controller implements Initializable {
     @FXML
     public void bookHandler(ActionEvent event)
     {
-        System.out.println("fds");
-        //departureListView.getSelectedItem();
+
+        System.out.println(departureListView.getSelectionModel().getSelectedItems());
+        try
+        {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("BookDialog.fxml"));
+            DialogPane bookDialogPane = fxmlLoader.load();
+
+            BookController bookController = fxmlLoader.getController();
+            Dialog<ButtonType> dialog = new Dialog<>();
+            dialog.setDialogPane(bookDialogPane);;
+
+            Optional<ButtonType> clieckButton = dialog.showAndWait();
+            if(clieckButton.get() == ButtonType.OK){
+
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
     @FXML
     public void search(ActionEvent event) throws ClassNotFoundException {
@@ -211,6 +234,7 @@ public class Controller implements Initializable {
             passengerCount++;
         passangerLabel.setText(String.valueOf(passengerCount));
     }
+
     public static int getPassangerLabel() {
         return passengerCount;
     }
