@@ -23,6 +23,36 @@
     -fx-background-position: center;
     -fx-background-repeat: stretch
 }
+.image_map_aku_isa{
+    -fx-background-image: url('/img/akureyri-isafjordur.png');
+    -fx-background-size: 100%;
+    -fx-background-position: center;
+    -fx-background-repeat: stretch
+}
+.image_map_aku_egs{
+    -fx-background-image: url('/img/akureyri-egilsstadir.png');
+    -fx-background-size: 100%;
+    -fx-background-position: center;
+    -fx-background-repeat: stretch
+}
+.image_map_isa_egs{
+    -fx-background-image: url('/img/egilstadir-isafjordur.png');
+    -fx-background-size: 100%;
+    -fx-background-position: center;
+    -fx-background-repeat: stretch
+}
+.image_map_none{
+    -fx-background-image: url('/img/map.png');
+    -fx-background-size: 100%;
+    -fx-background-position: center;
+    -fx-background-repeat: stretch
+}
+.image_background{
+    -fx-background-image: url('/img/background.png');
+    -fx-background-size: 100%;
+    -fx-background-position: center;
+    -fx-background-repeat: stretch
+}
  .background_img_lightblue_plain_arrival{
      -fx-background-image: url('/img/lightBluePlainArrival.png');
      -fx-background-size: 4em ;
@@ -61,12 +91,6 @@
 }
 .icon_result{
     -fx-background-image: url('/img/result.png');
-    -fx-background-size: 0.5em ;
-    -fx-background-position: center;
-    -fx-background-repeat: stretch
-}
-.icon_plain{
-    -fx-background-image: url('/img/bluePlain.png');
     -fx-background-size: 0.5em ;
     -fx-background-position: center;
     -fx-background-repeat: stretch
